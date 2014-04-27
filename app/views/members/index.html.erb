@@ -1,0 +1,60 @@
+<%= render :partial => "layouts/admin_header" %>
+<div class='index-table'>
+  <h1>Listing members</h1>
+  <div class='filter-input'>
+    <input class='form-control filter' type="text" placeholder="Filter"></input>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Address</th>
+          <th>Unit</th>
+          <th>City</th>
+          <th>Zip code</th>
+          <th>Phone number</th>
+          <th>Email</th>
+          <th>Doctor or clinic name</th>
+          <th>Doctor's recommendation</th>
+          <th>Proof of residency</th>
+          <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody class='searchable'>
+      <% @members.each do |member| %>
+        <tr>
+            <td><%= member.first_name %></td>
+            <td><%= member.last_name %></td>
+            <td><%= member.address %></td>
+            <td><%= member.unit %></td>
+            <td><%= member.city %></td>
+            <td><%= member.zip_code %></td>
+            <td><%= member.phone_number %></td>
+            <td><%= member.email %></td>
+            <td><%= member.doctor_or_clinic_name %></td>
+            <td><%= link_to "Doctor's recommendation", member.doctor_recommendation.url %></td>
+            <td><%= link_to "Proof of residency", member.ca_proof_of_residency.url %></td>
+            <td><%= link_to member.approved? ? 'Unapprove' : 'Approve', approve_member_path(member) %></td>
+          <td><%= link_to 'Reissue code', reissue_member_path(member) %></td>
+          <td><%= link_to 'Delete', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <br>
+  
+</div>
+<script>
+  $('input.filter').on('keyup', function() {
+    var rex = new RegExp($(this).val(), 'i');
+    $('.searchable tr').hide();
+    $('.searchable tr').filter(function() {
+      return rex.test($(this).text());
+    }).show();
+  });
+</script>

@@ -1,0 +1,54 @@
+<%= render :partial => "layouts/admin_header" %>
+<div class='index-table'>
+  <h1>Listing strains <%= link_to '<i class="icon-pencil"></i> New Strain'.html_safe, new_strain_path, :class => "btn btn-default btn-xs" %></h1>
+  <div class='filter-input'>
+    <input class='form-control filter' type="text" placeholder="Filter"></input>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th>Strain</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Thc</th>
+          <th>Cbd</th>
+          <th>Price</th>
+          <th>Photo</th>
+          <th>Published</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody class='searchable'>
+      <% @strains.each do |strain| %>
+        <tr>
+            <td><%= strain.strain %></td>
+            <td><%= strain.name %></td>
+            <td><%= truncate_html(strain.description, length: 100) %></td>
+            <td><%= strain.thc %></td>
+            <td><%= strain.cbd %></td>
+            <td><%= number_to_currency(strain.price, unit: '$') %></td>
+            <td><%= image_tag(strain.photo.url(:thumb)) %></td>
+            <td><%= strain.published %></td>
+            <!--<td><%= link_to 'Show', strain %></td>-->
+          <td><%= link_to 'Edit', edit_strain_path(strain) %></td>
+          <td><%= link_to 'Delete', strain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <%= link_to '<i class="icon-pencil"></i> New Strain'.html_safe, new_strain_path, :class => "btn btn-default btn-xs" %>
+</div>
+<script>
+  $('input.filter').on('keyup', function() {
+    var rex = new RegExp($(this).val(), 'i');
+    $('.searchable tr').hide();
+    $('.searchable tr').filter(function() {
+      return rex.test($(this).text());
+    }).show();
+  });
+</script>

@@ -1,0 +1,26 @@
+= render :partial => "layouts/admin_header"
+-#
+  %h1
+    Manage users
+  
+  %table.table
+    %tr
+      %th
+        Email
+      %th
+        Admin
+      %th
+      %th
+      -#%th
+    - @users.each do |u|
+      %tr
+        %td
+          = u.email
+        %td
+          = u.admin?
+        %td
+          = link_to "Edit", edit_user_path(u)
+        %td
+          = link_to "Destroy", u, method: :delete, data: {confirm: "Are you sure?"}
+        -#%td
+          -#= link_to "Assimilate User", assimilate_path(u), title: "Log in as #{u.email}"

@@ -1,0 +1,43 @@
+<%= render :partial => "layouts/admin_header" %>
+<div class='index-table'>
+  <h1>Listing orders </h1>
+  <div class='filter-input'>
+    <input class='form-control filter' type="text" placeholder="Filter"></input>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th>Order</th>
+          <th>Member</th>
+          <th>Processed?</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody class='searchable'>
+      <% @orders.each do |order| %>
+        <tr>
+            <td><%= order.id %></td>
+            <td><%= order.member.full_name %></td>
+            <td><%= order.processed? %></td>
+            <td><%= link_to 'Show', order %></td>
+          <td><%= link_to 'Delete', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <br>
+  
+
+</div>
+<script>
+  $('input.filter').on('keyup', function() {
+    var rex = new RegExp($(this).val(), 'i');
+    $('.searchable tr').hide();
+    $('.searchable tr').filter(function() {
+      return rex.test($(this).text());
+    }).show();
+  });
+</script>

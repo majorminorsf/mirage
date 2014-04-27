@@ -1,0 +1,21 @@
+= render :partial => "layouts/admin_header"
+.container
+  .row
+    .col-lg-12
+      %h1
+        Editing user
+      .admin-form
+        = simple_form_for(@user) do |f|
+          = f.error_notification
+        
+          .form-inputs
+            = f.input :email
+            = f.input :password
+            = f.input :password_confirmation
+            = f.input :admin
+            %div{style: 'height: 10px'}
+        
+          .form-actions
+            = f.button :submit
+
+      = link_to 'Back', admin_path

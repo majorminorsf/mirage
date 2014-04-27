@@ -1,0 +1,28 @@
+#main
+  .video{style: 'overflow: hidden'}
+    -#%video{autoplay: 'autoplay', loop: 'loop', src: '/video/mirage_homepage_bg.mp4'}
+  .gradient
+  = render partial: 'layouts/header'
+  .container
+    .row
+      .col-xs-12
+        %section.contact
+          .form
+            %a.tel{href: 'tel:+14155555555'}
+              415 - 555 - 5555
+            %a.email{href: 'mailto:info@miragemedicinal.com'}
+              info@miragemedicinal.com
+            %ul.social
+              %li
+                %a{href: '#', target: '_blank'}
+              %li
+                %a{href: '#', target: '_blank'}
+              %li
+                %a{href: '#', target: '_blank'}
+              %li
+                %a{href: '#', target: '_blank'}
+            %form{action: '#'}
+              %input{placeholder: "Enter your email to join the Mirage Mailing List"}
+              %button
+                Sign Up
+= render partial: 'layouts/footer'

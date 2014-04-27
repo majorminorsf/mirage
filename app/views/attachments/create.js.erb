@@ -1,0 +1,5 @@
+$('#attachmentSubModal').subModal('close');
+$('#attachmentSubModal').hide();
+$('#attachmentSubModal form').find("input[type=text], input[type=file]").val("");
+$("#attachmentSubModal").closest(".modal-content").find(".modal-body").removeClass("subModalShown");
+$(".attachmentList").html("<%= j(render partial: "layouts/attachments") %>");

@@ -1,0 +1,18 @@
+<% if @attachments.empty? %>
+  <li>
+    <p>No files found.</p>
+  </li>
+<% else %>
+  <% @attachments.each do |att| %>
+    <li>
+      <% if att.has_image %>
+        <a data-label='<%= att.label %>' class='fileAttachment' target='_blank' href="<%= att.attached_file.url %>">
+          <span><%= att.label %></span>
+          <%= image_tag(att.attached_file.url) %>
+        </a>
+      <% else %>
+        <a data-label='<%= att.label %>' class='fileAttachment' target='_blank' href="<%= att.attached_file.url %>"><%= att.label %> (<%= att.attached_file_file_name %>)</a>
+      <% end %>
+    </li>
+  <% end %>
+<% end %>

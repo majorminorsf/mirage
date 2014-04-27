@@ -1,0 +1,32 @@
+= render :partial => "layouts/admin_header"
+.container
+  .row
+    .col-xs-6
+      %h2
+        Member info
+      %ul.unstyled
+        .name
+          = @order.member.full_name
+        .email
+          = @order.member.email
+        .phone
+          = @order.member.phone_number
+        .address
+          = @order.member.full_address.html_safe
+    .col-xs-6
+      %h2
+        Order info
+      %ul.unstyled
+        - @order.items.each do |item|
+          %li
+            = item.strain.name
+            %ul
+              %li
+                Quantity:
+                = item.quantity
+              %li
+                Total
+                = number_to_currency(item.total, unit: '$')
+        %li
+          Total:
+          = number_to_currency(@order.total, unit: '$')

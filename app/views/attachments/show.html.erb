@@ -1,0 +1,18 @@
+<%= render :partial => "layouts/admin_header" %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <%= image_tag(@attachment.attached_file.url) %>
+        <br>
+        <%= @attachment.label %>
+      </p>
+      
+      <%= link_to 'Edit', edit_attachment_path(@attachment) %> |
+      <%= link_to 'Back', attachments_path %>
+
+    </div>
+  </div>
+</div>

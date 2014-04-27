@@ -1,0 +1,45 @@
+<%= render :partial => "layouts/admin_header" %>
+<div class='index-table'>
+  <h1>Listing contents <%= link_to '<i class="icon-pencil"></i> New'.html_safe, new_content_path, :class => "btn btn-default btn-xs" %></h1>
+  <div class='filter-input'>
+    <input class='form-control filter' type="text" placeholder="Filter"></input>
+  </div>
+  <div style='height: 10px'></div>
+  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name of Content</th>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Published?</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class='searchable'>
+      <% @contents.each do |content| %>
+        <tr>
+          <td><%= content.name %></td>
+          <td><%= content.title %></td>
+          <td><%= content.body.blank? ? "" : truncate_html(content.body, :length => 150) %></td>
+          <td><%= content.published? ? "Yes" : "No" %></td>
+          <td><%= link_to 'Edit', edit_content_path(content) %></td>
+          <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <div style='height: 10px'></div>
+  <%= link_to '<i class="icon-pencil"></i> New'.html_safe, new_content_path, :class => "btn btn-default btn-xs" %>
+</div>
+<script>
+  $('input.filter').on('keyup', function() {
+    var rex = new RegExp($(this).val(), 'i');
+    $('.searchable tr').hide();
+    $('.searchable tr').filter(function() {
+      return rex.test($(this).text());
+    }).show();
+  });
+</script>

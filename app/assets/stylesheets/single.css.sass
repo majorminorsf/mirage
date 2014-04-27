@@ -1,0 +1,35 @@
+// ------------------------------------------------------------------ settings
+@import "fonts"
+@import "colors"
+@import "settings"
+
+// ------------------------------------------------------------------ main CSS
+body
+  overflow-x: hidden
+  overflow-y: hidden
+.stage
+  overflow-y: auto
+  padding-top: 20px
+  z-index: 1
+#page_stage1
+  background: #eaeaea
+  color: black
+#page_stage2
+  background: #0a0a0a
+  color: white
+nav
+  height: 20px
+  line-height: 20px
+  background: black
+  color: white
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 2
+  a,
+  a:hover
+    color: white
+
+// ------------------------------------------------------------------ media queries
+@import "mobile"

@@ -1,0 +1,58 @@
+#main
+  .video{style: 'overflow: hidden'}
+    %video{autoplay: 'autoplay', loop: 'loop', src: '/video/mirage_homepage_bg.mp4'}
+  .gradient
+  = render partial: 'layouts/header'
+  .container
+    .row
+      .col-xs-12
+        .hero
+          = @snippets[0].body.html_safe unless @snippets[0].body.blank?
+        %a.member{href: '#'}
+          click here to become a member
+  .scroll
+    scroll down to see the current menu
+#strains
+  .container
+    .row
+      .col-xs-12
+        - @strains.each do |str|
+          .strainWrapper{data: {id: str.id}, style: "background-image: url(#{str.photo.url});background-size: cover;"}
+            .strain
+              .name
+                = str.strain
+              .title
+                %a{href: strain_path(str)}
+                  = str.name
+              .info
+                %span.val
+                  = "#{str.thc}%"
+                %span.name
+                  THC
+                %span
+                  |
+                %span.val
+                  = "#{str.cbd}%"
+                %span.name
+                  CBD
+#merch
+  .container
+    .row
+      .col-xs-12
+        .merch
+          %a{href: '#'}
+            merch
+#join
+  .container
+    .row
+      .col-xs-12
+        .form
+          %h2
+            join our mailing list
+          %form{action: '#'}
+            %input{placeholder: "Email address"}
+            %button
+              Sign Up
+          %p
+            \*We promise not to send you any bullshit
+= render partial: 'layouts/footer'

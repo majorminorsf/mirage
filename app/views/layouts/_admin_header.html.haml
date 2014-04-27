@@ -1,0 +1,71 @@
+.navbar
+  %a.navbar-brand{:href => root_path}
+    Website
+  %ul.nav.navbar-nav
+    -#%li
+      = link_to "Administration", admin_path
+    -#%li.dropdown
+      %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}}
+        Media Attachments
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          = link_to "Manage", attachments_path
+        %li
+          = link_to "New", new_attachment_path
+    %li
+      = link_to "Page Content", contents_path
+    %li
+      = link_to "Strains", strains_path
+    %li
+      = link_to 'Members', members_path
+    %li
+      = link_to 'Orders', orders_path
+    -#
+      %li.dropdown
+        %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}}
+          Dropdown on Click
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            = link_to "Location", "#"
+          %li.divider
+          %li.dropdown-submenu
+            %a{:tabindex => "-1", :href => "#"}
+              Submenu
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:tabindex => "-1", :href => "#"}
+                  Submenu Item
+              %li
+                %a{:tabindex => "-1", :href => "#"}
+                  Submenu Item
+              %li.dropdown-submenu
+                %a{:href => "#"}
+                  Sub-submenu
+                %ul.dropdown-menu
+                  %li
+                    = link_to "Sub-submenu Item", "#"
+                  %li
+                    = link_to "Sub-submenu Item 2", "#"
+  %ul.nav.pull-right
+    %li.dropdown
+      %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}}
+        %span.normal-text
+          Logged in as
+        %span#username
+          = current_user.blank? ? "Guest" : current_user.email
+        %b.caret
+      %ul.dropdown-menu
+        - if current_user
+          %li
+            %a{:class => "logout", :href => "/logout"}
+              Log out
+          %li
+            %a{:class => "logout", :href => administration_account_settings_path}
+              Settings
+        - else
+          %li
+            %a{:class => "logout", :href => "/login"}
+              Log in

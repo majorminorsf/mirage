@@ -1,0 +1,53 @@
+#main
+  .video{style: 'overflow: hidden'}
+    -#%video{autoplay: 'autoplay', loop: 'loop', src: '/video/mirage_homepage_bg.mp4'}
+  .gradient
+  = render partial: 'layouts/header'
+  .container
+    .row
+      .col-xs-12
+        %section.hero
+          %header
+            %h1
+              = @snippets[4].title
+          = @snippets[4].body.html_safe unless @snippets[4].body.blank?
+#terms
+  .container
+    .row
+      .col-xs-12
+        %section
+          %header
+            %h1
+              = @snippets[5].title
+          = @snippets[5].body.html_safe unless @snippets[5].body.blank?
+#apply
+  .container
+    .row
+      .col-xs-12
+        %section
+          %header
+            %h1
+              Apply
+        .form
+          = simple_form_for(@member) do |f|
+            .form-inputs
+              .files
+                %h2
+                  upload pdf files
+                = f.input :doctor_recommendation, input_html: { class: 'form-control' }, label: "Doctor's Recommendation"
+                = f.input :ca_proof_of_residency, input_html: { class: 'form-control' }, label: "CA Proof of Residency"
+              .information
+                %h2
+                  information
+                = f.input :first_name, input_html: { class: 'form-control', placeholder: 'First name' }
+                = f.input :last_name, input_html: { class: 'form-control', placeholder: 'Last name' }
+                = f.input :address, input_html: { class: 'form-control', placeholder: 'Address' }
+                = f.input :unit, input_html: { class: 'form-control', placeholder: 'Suite/APT' }
+                = f.input :city, input_html: { class: 'form-control', placeholder: 'City' }
+                = f.input :zip_code, input_html: { class: 'form-control', placeholder: 'Zip code' }
+                = f.input :phone_number, input_html: { class: 'form-control', placeholder: 'Phone number' }
+                = f.input :email, input_html: { class: 'form-control', placeholder: 'Email' }
+                = f.input :doctor_or_clinic_name, input_html: { class: 'form-control', placeholder: 'Doctor or clinic name' }
+            .form-actions
+              = f.button :button, 'Apply'
+= render partial: 'layouts/footer'

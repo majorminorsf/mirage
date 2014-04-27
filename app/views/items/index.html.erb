@@ -1,0 +1,43 @@
+<%= render :partial => "layouts/admin_header" %>
+<div class='index-table'>
+  <h1>Listing items <%= link_to '<i class="icon-pencil"></i> New Item'.html_safe, new_item_path, :class => "btn btn-default btn-xs" %></h1>
+  <div class='filter-input'>
+    <input class='form-control filter' type="text" placeholder="Filter"></input>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th>Strain</th>
+          <th>Quantity</th>
+          <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody class='searchable'>
+      <% @items.each do |item| %>
+        <tr>
+            <td><%= item.strain_id %></td>
+            <td><%= item.quantity %></td>
+            <td><%= link_to 'Show', item %></td>
+          <td><%= link_to 'Edit', edit_item_path(item) %></td>
+          <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <%= link_to '<i class="icon-pencil"></i> New Item'.html_safe, new_item_path, :class => "btn btn-default btn-xs" %>
+</div>
+<script>
+  $('input.filter').on('keyup', function() {
+    var rex = new RegExp($(this).val(), 'i');
+    $('.searchable tr').hide();
+    $('.searchable tr').filter(function() {
+      return rex.test($(this).text());
+    }).show();
+  });
+</script>

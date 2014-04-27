@@ -1,0 +1,6 @@
+- unless @content.body.blank?
+  = Haml::Engine.new("#{@header}").render
+  = @content.body.html_safe
+  - if user_signed_in?
+    - if current_user.admin?
+      = link_to "Edit", edit_content_path(@content)

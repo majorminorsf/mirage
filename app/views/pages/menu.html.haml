@@ -1,0 +1,68 @@
+= render partial: 'layouts/header'
+#menu
+  .container
+    .row
+      .col-xs-12
+        - unless @feature.blank?
+          %section.feature
+            = image_tag(@feature.photo.url)
+            %header
+              %h2
+                featured strain
+              %h1
+                = @feature.name
+    .row
+      .listing
+        - @strains.each do |str|
+          .col-sm-4.menu-item
+            .header
+              = image_tag(str.photo.url(:menu))
+              .title
+                .strain
+                  = str.strain
+                .name
+                  = str.name
+                .info
+                  %span.val
+                    = "#{str.thc}%"
+                  %span.name
+                    THC
+                  %span
+                    |
+                  %span.val
+                    = "#{str.cbd}%"
+                  %span.name
+                    CBD
+            .description
+              .rating
+                - 5.times do
+                  %span.icon.icon-star
+              = str.description.html_safe unless str.description.blank?
+              .prices
+                = "1/8ths @ $#{str.price}"
+                %br
+                = "1/2 Oz.s @ $#{str.price*4}"
+              .learn
+                %a.btn{href: strain_path(str)}
+                  Learn More
+    .row
+      .col-xs-12
+        .skq
+          %ul.unstyled
+            %li.active
+              %a{href: '#'}
+                Safety
+            %li
+              %a{href: '#'}
+                Knowledge
+            %li
+              %a{href: '#'}
+                Quality
+          .s.skq-text.active
+            = @snippets[6].body.html_safe unless @snippets[6].body.blank?
+          .k.skq-text
+            = @snippets[7].body.html_safe unless @snippets[7].body.blank?
+          .q.skq-text
+            = @snippets[8].body.html_safe unless @snippets[8].body.blank?
+            
+= render partial: 'layouts/footer'

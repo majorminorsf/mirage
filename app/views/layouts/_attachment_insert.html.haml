@@ -1,0 +1,43 @@
+#attachments.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: "button", data: {dismiss: "modal"}, aria: {hidden: true}}
+          &times;
+        %h4.modal-title
+          Attachments
+      .modal-body
+        #attachmentSubModal.modal.sub-modal.fade{tabindex: "-1", role: "dialog", aria: {labelledby: "attachmentSubModalLabel", hidden: "true"}}
+          = simple_form_for(@attachment, html: {multipart: true}, remote: true) do |f|
+            .modal-body
+              %p.center
+                Add a new media attachment.
+                %br
+                It will become available immediately after submission.
+              %hr
+              .attachmentUpload
+                = f.input :label
+                .attached-file-input
+                  = label_tag "File", "File", class: "file-label"
+                  .attached-file-preview
+                    .path-preview
+                      %span.small-text
+                        No file chosen
+                    .img-preview
+                      %div
+                        = image_tag("http://www.placehold.it/65/EFEFEF/808080&text=Preview")
+                  = f.label "attached_file", "Select File", class: "btn btn-primary btn-file btn-xs"
+                  .hide
+                    = f.input :attached_file
+                = hidden_field_tag "ajax", "true"
+            .modal-footer{style: "padding-top: 6px;"}
+              %button.btn.btn-default{style: "margin-top: 5px", data: {dismiss: "submodal"}, aria: {hidden: "true"}}
+                Close
+              = f.button :submit, "Submit", class: "btn btn-danger", style: "margin-top: 5px"
+        %ul.unstyled.attachmentList
+          = render partial: "layouts/attachments"
+      .modal-footer
+        %a.btn.btn-default.subModalLaunch{href: "#attachmentSubModal", role: "button", data:{toggle: "submodal"}}
+          Add File
+        %button.btn.btn-inverse{type: "button", data: {dismiss: "modal"}}
+          Cancel

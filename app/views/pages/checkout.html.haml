@@ -1,0 +1,22 @@
+= render partial: 'layouts/header'
+#checkout
+  .container
+    .row
+      .col-xs-6
+        %ul.unstyled
+          %h2
+            Cart items
+          - @current_order.items.each do |item|
+            %li
+              .name
+                = item.strain.name
+              .quantity
+                = item.quantity
+              .price
+                = item.price
+      .col-xs-6
+        %form.form{action: checkout_order_path(@current_order)}
+          %input.form-control{placeholder: 'Member Email', name: 'email'}
+          %input.form-control{placeholder: 'Member Code', name: 'code'}
+          %button{type: 'submit'}
+            Checkout

@@ -1,0 +1,32 @@
+#main
+  .video{style: 'overflow: hidden'}
+    %video{autoplay: 'autoplay', loop: 'loop', src: '/video/mirage_homepage_bg.mp4'}
+  .gradient
+  = render partial: 'layouts/header'
+  .container
+    .row
+      .col-xs-12
+        %section.hero
+          %header
+            %h1
+              = @snippets[1].title
+          = @snippets[1].body.html_safe unless @snippets[1].body.blank?
+#services
+  .container
+    .row
+      .col-xs-12
+        %section
+          %header
+            %h1
+              = @snippets[2].title
+          = @snippets[2].body.html_safe unless @snippets[2].body.blank?
+#faq
+  .container
+    .row
+      .col-xs-12
+        %section
+          %header
+            %h1
+              = @snippets[3].title
+          = @snippets[3].body.html_safe unless @snippets[3].body.blank?
+= render partial: 'layouts/footer'

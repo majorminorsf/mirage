@@ -1,0 +1,18 @@
+<%= simple_form_for(@content) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, input_html: { class: 'form-control' } %>
+    <%= f.input :title, input_html: { class: 'form-control' } %>
+    <%= f.input :body, input_html: { class: 'form-control' } %>
+    <a href='#' class='toHTML btn btn-default btn-xs'>HTML Mode</a>
+    <div style='height: 4px'></div>
+    <a data-toggle="modal" href="#attachments" class='btn btn-default btn-xs'>Insert Media</a>
+    <div style='height: 30px'></div>
+    <%= f.input :published, input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

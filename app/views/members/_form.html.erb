@@ -1,0 +1,19 @@
+<%= simple_form_for(@member) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name, input_html: { class: 'form-control' } %>
+    <%= f.input :last_name, input_html: { class: 'form-control' } %>
+    <%= f.input :address, input_html: { class: 'form-control' } %>
+    <%= f.input :unit, input_html: { class: 'form-control' } %>
+    <%= f.input :city, input_html: { class: 'form-control' } %>
+    <%= f.input :zip_code, input_html: { class: 'form-control' } %>
+    <%= f.input :phone_number, input_html: { class: 'form-control' } %>
+    <%= f.input :email, input_html: { class: 'form-control' } %>
+    <%= f.input :doctor_or_clinic_name, input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

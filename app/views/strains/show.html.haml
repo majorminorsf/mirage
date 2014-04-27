@@ -1,0 +1,47 @@
+= render partial: 'layouts/header'
+#strain
+  .container
+    .row
+      .col-xs-12
+        .cart.pull-right
+          %a{href: checkout_path}
+            %span.icon
+            %span.count
+              = @current_order.items.count
+        %section
+          %header
+            %h1
+              = @strain.name
+          .photo
+            = image_tag(@strain.photo.url)
+          .rating
+            - 5.times do
+              %span.icon.icon-star
+          .strain
+            = @strain.strain
+          .info
+            %span.val
+              = "#{@strain.thc}%"
+            %span.name
+              THC
+            %span
+              |
+            %span.val
+              = "#{@strain.cbd}%"
+            %span.name
+              CBD
+          .description
+            = @strain.description.html_safe unless @strain.description.blank?
+          .prices
+            .order_form
+              %form{action: add_to_order_strain_path(@strain)}
+                %label
+                  = "1/8ths @ $#{@strain.price}"
+                %input.eighth{placeholder: 'QTY'}
+                .clear
+                %label
+                  = "1/2 Oz.s @ $#{@strain.price*4}"
+                %input.half{placeholder: 'QTY'}
+                %button.btn
+                  Add to Cart
+= render partial: 'layouts/footer'
