@@ -1,17 +1,21 @@
-%header#header
+%header#header{class: (%w(menu show).include? thisPage) ? 'stuck' : 'default'}
   .container
     .row
       .col-xs-13
         .share.pull-right
           %a{href: '#', target: '_blank'}
+            %span.ss-icon.ss-social-regular.ss-tumblr
           %a{href: '#', target: '_blank'}
+            %span.ss-icon.ss-social-regular.ss-facebook
           %a{href: '#', target: '_blank'}
+            %span.ss-icon.ss-social-regular.ss-instagram
           %a{href: '#', target: '_blank'}
+            %span.ss-icon.ss-social-regular.ss-twitter
         %a#logo{href: '/'}
         #main-menu
           %ul.unstyled
             %li
-              %a{href: '/shop'}
+              %a{href: 'http://miragemedicinal.bigcartel.com'}
                 shop
             %li
               %a{href: '/menu'}

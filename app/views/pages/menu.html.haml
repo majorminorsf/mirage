@@ -3,6 +3,11 @@
   .container
     .row
       .col-xs-12
+        .cart.pull-right
+          %a{href: checkout_path}
+            %span.icon
+            %span.count
+              = @current_order.items.count
         - unless @feature.blank?
           %section.feature
             = image_tag(@feature.photo.url)
@@ -10,7 +15,8 @@
               %h2
                 featured strain
               %h1
-                = @feature.name
+                %a{href: strain_path(@feature)}
+                  = @feature.name
     .row
       .listing
         - @strains.each do |str|
@@ -21,7 +27,8 @@
                 .strain
                   = str.strain
                 .name
-                  = str.name
+                  %a{href: strain_path(str)}
+                    = str.name
                 .info
                   %span.val
                     = "#{str.thc}%"

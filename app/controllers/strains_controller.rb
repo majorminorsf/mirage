@@ -1,6 +1,6 @@
 class StrainsController < ApplicationController
-  before_action :set_strain, only: [:show, :edit, :update, :destroy, :rate, :add_to_order]
-  before_filter :authorize_or_redirect, except: [:rate]
+  before_action :set_strain, only: [:edit, :update, :destroy, :rate, :add_to_order]
+  before_filter :authorize_or_redirect, except: [:rate, :show, :add_to_order]
 
   def rate
     
@@ -17,6 +17,7 @@ class StrainsController < ApplicationController
   # GET /strains/1
   def show
     @current_order = current_order
+    @strain = Strain.find_by_name(params[:name])
   end
 
   # GET /strains/new

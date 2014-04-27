@@ -1,7 +1,10 @@
 #main
   .video{style: 'overflow: hidden'}
-    %video{autoplay: 'autoplay', loop: 'loop', src: '/video/mirage_homepage_bg.mp4'}
-  .gradient
+    %video{autoplay: 'autoplay', loop: 'loop'}
+      %source{src: '/video/vid.mp4'}
+      %source{src: '/video/vid.ogv'}
+  #gradient
+  = javascript_include_tag 'gradient.js'
   = render partial: 'layouts/header'
   .container
     .row

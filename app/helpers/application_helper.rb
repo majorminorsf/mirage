@@ -58,4 +58,7 @@ module ApplicationHelper
       render "layouts/content"
     end
   end
+  def strain_path strain
+    "/strains/#{strain.name}"
+  end
 end

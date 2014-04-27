@@ -1,3 +1,4 @@
+var wHeight = $(window).height()-75;
 function formInputs(parent){
 //textareas
   if($(parent).find("textarea").length>0){
@@ -147,7 +148,11 @@ $(function(){
   	//});
   });
 //miragejs
-  $('#main').height($(window).height());
+  if(onPage('pages-index')){
+    $('#main').height($(window).height()-50);
+  } else {
+  	$('#main').height($(window).height());
+  }
   $(document).on('click', '.skq a', function(e){
   	e.preventDefault();
   	var ix = $(this).closest('li').index();
@@ -168,5 +173,35 @@ $(function(){
   		$form.find('input').val('');
   	});
   });
+  if(onPage("pages-index")){
+  	$(window).scroll(function(){
+      if ($(window).scrollTop() >= wHeight) {
+         $('#header').addClass('stuck');
+      }
+      else {
+         $('#header').removeClass('stuck');
+      }
+    });
+  }
+  $('#strain .prices input').keyup(function(){
+  	this.value = this.value.replace(/[^0-9\.]/g,'');
+  });
+  $(document).on('click', '#new_newsletter button', function(e){
+  	var form = $('#new_newsletter');
+  	var action = $('#new_newsletter').attr('action');
+  	if($('.contact input').val() == ""){
+  		return false;
+  	} else {
+  		var data = form.serializeArray();
+      $.ajax({url: action, type: 'POST', data: data});
+  	}
+  });
+  $('#member_doctor_recommendation').change(function(){
+  	var filename = $('#member_doctor_recommendation').val().replace(/C:\\fakepath\\/i, '');
+  	$(this).closest('.control-group').find('label').text(filename).addClass('selected');
+  });
+  $('#member_ca_proof_of_residency').change(function(){
+  	var filename = $('#member_ca_proof_of_residency').val().replace(/C:\\fakepath\\/i, '');
+  	$(this).closest('.control-group').find('label').text(filename).addClass('selected');
+  });
 });
-

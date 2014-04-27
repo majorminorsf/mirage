@@ -19,6 +19,7 @@ class PagesController < ApplicationController
     @feature = Strain.where('featured = ?', true).first
     @strains = Strain.all
     @snippets = Content.all ||= []
+    @current_order = current_order
   end
   def admin
     @bodyclass = "admin"
@@ -37,6 +38,7 @@ class PagesController < ApplicationController
       @emails.push(e)
     end
     @message = Message.new
+    @newsletter = Newsletter.new
   end
   
   def ajax

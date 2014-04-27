@@ -33,6 +33,7 @@ class MembersController < ApplicationController
     @member = Member.new(member_params)
 
     if @member.save
+      SendMail.email('mekkagojira@gmail.com', member_params[:email], "Thank you", Message.new(body: "Please wait for approval")).deliver
       redirect_to membership_path
     else
       render action: 'new'

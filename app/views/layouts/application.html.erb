@@ -6,6 +6,7 @@
   <meta name="description" content="<%= metatag %>" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/favicon.png" />
+  <link href="/css/ss-social-regular.css" rel="stylesheet" />
   <%= stylesheet_link_tag "application" %>
   <%= yield :styles %>
   <!--[if lt IE 9]>
@@ -50,5 +51,6 @@
   <% if controller.action_name == "edit" || controller.action_name == "new" %>
     <%= render :partial => "layouts/attachment_insert" %>
   <% end %>
+  <script src="/javascripts/ss-social.js"></script>
 </body>
 </html>

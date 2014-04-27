@@ -1,15 +1,21 @@
 #main
   .video{style: 'overflow: hidden'}
-    %video{autoplay: 'autoplay', loop: 'loop', src: '/video/mirage_homepage_bg.mp4'}
-  .gradient
+    %video{autoplay: 'autoplay', loop: 'loop'}
+      %source{src: '/video/vid.mp4'}
+      %source{src: '/video/vid.ogv'}
+  #gradient
+  = javascript_include_tag 'gradient.js'
   = render partial: 'layouts/header'
   .container
     .row
       .col-xs-12
         .hero
           = @snippets[0].body.html_safe unless @snippets[0].body.blank?
-        %a.member{href: '#'}
-          click here to become a member
+        %a.member{href: membership_path}
+          %span.default
+            click here to become a member
+          %span.hovered
+            sign up
   .scroll
     scroll down to see the current menu
 #strains

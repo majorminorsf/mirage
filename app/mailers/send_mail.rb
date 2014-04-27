@@ -1,5 +1,5 @@
 class SendMail < ActionMailer::Base
-  default :from => "science@metatroid.com"
+  default :from => "mekkagojira@gmail.com"
   
   def email(sender, email, subject, message)
   	@message = message

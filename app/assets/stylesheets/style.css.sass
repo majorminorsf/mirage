@@ -11,7 +11,7 @@
   color: #fff
   top: 100%
 
-.gradient
+#gradient
   background: #00a094
   background: -moz-linear-gradient(top,  #00a094 0%, #00a094 18%, #099794 34%, #1e8194 59%, #465893 100%)
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00a094), color-stop(18%,#00a094), color-stop(34%,#099794), color-stop(59%,#1e8194), color-stop(100%,#465893))
@@ -23,7 +23,7 @@
   opacity: 0.85
 .video
   //overflow: hidden
-.video, .video video, .gradient
+.video, .video video, #gradient
   position: absolute
   top: 0
   right: 0
@@ -43,23 +43,42 @@
     z-index: 2
     margin-top: -15px
     a
-      background: url(/assets/social.png) no-repeat
+      //background: url(/assets/social.png) no-repeat
       display: block
       float: left
       height: 19px
       width: 19px
-      margin-right: 10px
-      &:nth-child(1)
-        background-position: 0px 0
-      &:nth-child(2)
-        background-position: -35px 0
-      &:nth-child(3)
-        background-position: -68px 0
-        margin-right: 15px
+      margin-right: 15px
+      color: #fff
+      font-size: 18px
       &:nth-child(4)
-        background-position: -104px 0
         margin-right: 0
-      
+  &.stuck
+    background: url(/assets/headerbg.png) center center no-repeat
+    background-size: cover
+    padding-top: 0
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 9
+    .share
+      margin-top: 15px
+    #logo
+      float: left
+      margin: 0
+      margin: 0px
+      background-size: 80%
+      background-repeat: no-repeat
+      background-position: center center
+    #main-menu
+      margin: 0
+      ul
+        margin: 0
+        position: absolute
+        left: 50%
+        top: 30%
+
   #logo
     display: block
     margin: 0 auto 15px
@@ -86,6 +105,10 @@
           padding: 5px 10px
           font-size: 12px
           font-family: circularblack
+
+#header.stuck + #menu,
+#header.stuck + #strain
+  padding-top: 55px
 
 .hero
   font-size: 28px
@@ -119,17 +142,44 @@
   text-transform: uppercase
   position: relative
   padding-left: 51px
+  text-align: center
   &:hover
     color: #fff
+    .hovered
+      opacity: 1
+    .default
+      opacity: 0
+    &:before
+      right: auto
+      left: 332px
   &:before
     content: ''
     position: absolute
     left: 6px
+    right: auto
     top: 6px
     width: 30px
     height: 30px
     border-radius: 30px
     background: #fff
+    transition: all .3s ease-in-out
+    -webkit-transition: all .3s ease-in-out
+    -moz-transition: all .3s ease-in-out
+    -ms-transition: all .3s ease-in-out
+  .default,
+  .hovered
+    transition: all .3s ease-in-out
+    -webkit-transition: all .3s ease-in-out
+    -moz-transition: all .3s ease-in-out
+    -ms-transition: all .3s ease-in-out
+    position: absolute
+    left: 0
+    right: 0
+  .default
+    opacity: 1
+  .hovered
+    opacity: 0
+    
 .scroll
   text-align: center
   text-transform: uppercase
@@ -342,14 +392,19 @@
     margin: 50px auto
     color: #fff
   input
-    color: #000
+    border: 5px solid #bdc3c7
+    text-transform: uppercase
+    color: #00a094
+    text-align: center
+    //font-size: 22px
+    padding: 25px
+    border-radius: 0
     background: #fff
-    border: none
     width: 100%
     display: block
     margin: 0 auto 20px
-    padding: 6px 8px
-    font-size: 1.5em
+    //padding: 6px 8px
+    font-size: 15px
   button
     background: orange
     border: none
@@ -360,6 +415,8 @@
     width: 120px
     display: block
     margin-bottom: 20px
+    &:hover, &:focus
+      color: #fff
 #apply
   .form
     width: 570px
@@ -377,6 +434,7 @@
       .controls, label
         position: absolute
       label
+        cursor: pointer
         z-index: 2
         text-transform: uppercase
         color: #fff
@@ -401,6 +459,17 @@
           position: relative
           top: 2px
           left: -10px
+        &.selected
+          background: $green
+          &:after
+            content: ''
+            display: inline-block
+            width: 26px
+            height: 19px
+            background: url(/assets/check.png)
+            position: relative
+            top: 2px
+            right: -10px
       .controls
         background: #bdc3c7
         display: block
@@ -441,6 +510,7 @@
         margin-bottom: 20px
         color: #fff
 .strains-show, .pages-menu
+.null
   header#header
     background: url(/assets/headerbg.png) center center no-repeat
     background-size: cover
@@ -497,6 +567,7 @@
     input
       width: 44px
       margin-bottom: 10px
+      text-align: center
     button
       background: orange
       border: none
@@ -530,6 +601,10 @@
       h1
         font-size: 96px
         margin-top: 0
+      a
+        color: #fff
+        &:hover
+          color: $blue
     img
       z-index: 1
   .listing
@@ -560,6 +635,8 @@
             font-size: 36px
             font-family: circularblack
             line-height: 36px
+            a
+              color: #fff
         img
           z-index: 1
       .description
@@ -586,7 +663,7 @@
             font-size: 14px
             padding: 2px 5px
       &:hover
-        .title > .name
+        .title > .name a
           color: $blue
         .learn
           visibility: visible
@@ -620,8 +697,14 @@
       display: block
 
 .cart
+  position: relative
+  z-index: 8
   .icon, .count
     display: inline-block
+  .count
+    position: relative
+    top: -10px
+    color: $green
   .icon
     width: 25px
     height: 24px

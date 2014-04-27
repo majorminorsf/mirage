@@ -17,7 +17,7 @@ class Member < ActiveRecord::Base
       @message = Message.new(body: "Your code is: #{randomString}")
     	email = self.email
     	subject = "You've been approved!"
-    	sender = "science@metatroid.com"
+    	sender = "mekkagojira@gmail.com"
     	SendMail.email(sender, email, subject, @message).deliver
     else
       self.update(code: "")
@@ -30,7 +30,7 @@ class Member < ActiveRecord::Base
     @message = Message.new(body: "Your code is: #{randomString}")
   	email = self.email
   	subject = "Your new code!"
-  	sender = "science@metatroid.com"
+  	sender = "mekkagojira@gmail.com"
   	SendMail.email(sender, email, subject, @message).deliver
   end
 end

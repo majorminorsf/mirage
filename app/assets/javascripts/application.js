@@ -21,7 +21,7 @@
 //= require rails.js
 //= require nested_form.js
 //= require bootstrap.js
-//= require modernizr.js
+//= require modernizr.custom.js
 //= require bootstrap-wysihtml5/b3
 //= require jquery.iframe-transport.js
 //= require jquery.remotipart.js
@@ -30,4 +30,6 @@
 //= require ladda.min.js
 //= require jquery.icheck.min.js
 //= require bootstrap-select.min.js
+//= require classie.js
+//= require progressButton.js
 //= require script.js

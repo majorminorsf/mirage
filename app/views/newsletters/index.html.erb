@@ -1,0 +1,41 @@
+<%= render :partial => "layouts/admin_header" %>
+<div class='index-table'>
+  <h1>Listing newsletters <%= link_to '<i class="icon-pencil"></i> New Newsletter'.html_safe, new_newsletter_path, :class => "btn btn-default btn-xs" %></h1>
+  <div class='filter-input'>
+    <input class='form-control filter' type="text" placeholder="Filter"></input>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th>Email</th>
+          <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody class='searchable'>
+      <% @newsletters.each do |newsletter| %>
+        <tr>
+            <td><%= newsletter.email %></td>
+            <td><%= link_to 'Show', newsletter %></td>
+          <td><%= link_to 'Edit', edit_newsletter_path(newsletter) %></td>
+          <td><%= link_to 'Delete', newsletter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <%= link_to '<i class="icon-pencil"></i> New Newsletter'.html_safe, new_newsletter_path, :class => "btn btn-default btn-xs" %>
+</div>
+<script>
+  $('input.filter').on('keyup', function() {
+    var rex = new RegExp($(this).val(), 'i');
+    $('.searchable tr').hide();
+    $('.searchable tr').filter(function() {
+      return rex.test($(this).text());
+    }).show();
+  });
+</script>
