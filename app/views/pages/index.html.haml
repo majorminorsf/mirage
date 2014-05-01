@@ -23,7 +23,7 @@
     .row
       .col-xs-12
         - @strains.each do |str|
-          .strainWrapper{data: {id: str.id}, style: "background-image: url(#{str.photo.url});background-size: cover;"}
+          .strainWrapper{data: {id: str.id}, style: "background-image: url(#{str.photo.url});background-size: contain;"}
             .strain
               .name
                 = str.strain
@@ -46,7 +46,7 @@
     .row
       .col-xs-12
         .merch
-          %a{href: '#'}
+          %a{href: 'http://miragemedicinal.bigcartel.com/'}
             merch
 #join
   .container
